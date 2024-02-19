@@ -5,6 +5,7 @@ import com.banking.simplebankapp.dto.AccountDetails;
 import com.banking.simplebankapp.dto.requests.CreateAccountRequest;
 import com.banking.simplebankapp.dto.requests.TransactionRequest;
 
+// This utility class is used for validation of input data before proceeding.
 public class InputValidator {
     public static boolean isSearchCriteriaValid(AccountDetails accountInput) {
         return COMMON_CONSTANT.SORT_CODE_PATTERN.matcher(accountInput.getSortCode()).find() &&

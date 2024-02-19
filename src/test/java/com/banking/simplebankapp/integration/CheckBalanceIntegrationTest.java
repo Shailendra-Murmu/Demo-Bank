@@ -27,7 +27,7 @@ class CheckBalanceIntegrationTest {
         input.setAccountNumber("73084635");
 
         // when
-        var body = accountController.checkAccountBalance(input).getBody();
+        var body = accountController.getAccountDetails(input).getBody();
 
         // then
         var account = (Account) body;

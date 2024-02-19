@@ -17,6 +17,7 @@ public class AccountService {
     private TransactionRepository transactionRepository;
 
     public Account getAccount(String sortCode, String accountNumber) {
+        // This method is used to fetch users account details along with their transaction records.
         Optional<Account> account = accountRepository
                 .findByAccountNumberAndSortCode(accountNumber, sortCode);
 
@@ -28,6 +29,7 @@ public class AccountService {
     }
 
     public Account getAccount(String accountNumber) {
+        // This method is used to fetch the users account details.
         Optional<Account> account = accountRepository
                 .findByAccountNumber(accountNumber);
 
@@ -35,6 +37,7 @@ public class AccountService {
     }
 
     public Account createAccount(String bankName, String ownerName) {
+        // This method is used to create the new account of user in the system.
         CodeGenerator codeGenerator = new CodeGenerator();
         Account newAccount = Account.builder().bankName(bankName).ownerName(ownerName).sortCode(codeGenerator.generateSortCode())
                 .accountNumber(codeGenerator.generateAccountNumber()).currentBalance(0.00).build();

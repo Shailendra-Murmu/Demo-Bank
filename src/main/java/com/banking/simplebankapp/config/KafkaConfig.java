@@ -15,6 +15,8 @@ import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.requestreply.ReplyingKafkaTemplate;
 
+// This is the configuration which defines the template for request-reply mechanism against various banking actions
+// such create account, make transfer, deposit, withdraw etc.
 @Configuration
 public class KafkaConfig {
     @Value("${kafka.group.id}")

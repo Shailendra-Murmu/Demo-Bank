@@ -41,7 +41,7 @@ public class AccountController {
     public ResponseEntity<?> createAccount(
             @Valid @RequestBody CreateAccountRequest createAccountRequest) throws ExecutionException, InterruptedException {
         log.debug("Triggered AccountRestController.createAccountRequest");
-
+        // This controller is used to create the bank account of a user.
         // Validate input
         if (InputValidator.isCreateAccountCriteriaValid(createAccountRequest)) {
             ProducerRecord<String, CreateAccountRequest> record = new ProducerRecord<>(requestTopic_ACCOUNT_CREATE, null, "STD001", createAccountRequest);
@@ -62,10 +62,10 @@ public class AccountController {
     @PostMapping(value = "/accounts",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> checkAccountBalance(
+    public ResponseEntity<?> getAccountDetails(
             @Valid @RequestBody AccountDetails accountDetails) throws ExecutionException, InterruptedException {
         log.debug("Triggered AccountRestController.accountDetails");
-
+        // This controller is used to fetch the account details of a user.
         // Validate input
         if (InputValidator.isSearchCriteriaValid(accountDetails)) {
             // Attempt to retrieve the account information

@@ -51,6 +51,7 @@ public class TransactionController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> makeTransfer(
             @Valid @RequestBody TransactionRequest transactionRequest) throws ExecutionException, InterruptedException {
+        // This controller is used for making fund transfer from one account to another account.
         if (InputValidator.isSearchTransactionValid(transactionRequest)) {
             ProducerRecord<String, TransactionRequest> record = new ProducerRecord<>(requestTopic_FUND_TRANSFER, null, "STD001", transactionRequest);
             RequestReplyFuture<String, TransactionRequest, Boolean> future = replyingFundTransferKafkaTemplate.sendAndReceive(record);
@@ -69,7 +70,7 @@ public class TransactionController {
     public ResponseEntity<?> deposit(
             @Valid @RequestBody DepositRequest depositRequest) throws ExecutionException, InterruptedException {
         log.debug("Triggered AccountRestController.depositRequest");
-
+        // This controller is used to deposit amount in bank account of a user.
         // Validate input
         if (InputValidator.isAccountNoValid(depositRequest.getTargetAccountNo())) {
             // Attempt to retrieve the account information
@@ -97,7 +98,7 @@ public class TransactionController {
     public ResponseEntity<?> withdraw(
             @Valid @RequestBody WithdrawRequest withdrawRequest) throws ExecutionException, InterruptedException {
         log.debug("Triggered AccountRestController.withdrawRequest");
-
+        // This controller is used to withdraw fund from the bank account of a user.
         // Validate input
         if (InputValidator.isSearchCriteriaValid(withdrawRequest)) {
             // Attempt to retrieve the account information

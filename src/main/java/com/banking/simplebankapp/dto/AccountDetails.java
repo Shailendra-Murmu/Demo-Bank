@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+// This dto is used to fetch account details
 public class AccountDetails {
     @NotBlank(message = "Sort code is mandatory")
     private String sortCode;

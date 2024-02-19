@@ -17,12 +17,13 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "account")
+// This entity is used to store the account details of a customer/user.
 public class Account {
     @Id
     @GeneratedValue
     private long id;
 
-    private String sortCode;
+    private String sortCode; // random code to sort the account
 
     private String accountNumber;
 

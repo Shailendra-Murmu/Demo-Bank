@@ -21,6 +21,8 @@ public class TransactionService {
     private TransactionRepository transactionRepository;
 
     public boolean makeTransfer(TransactionRequest transactionRequest) {
+        // This method is used for making fund transfer from source account to target account.
+        // This also validates that the source account should have sufficient balance for making fund transfer.
         String sourceSortCode = transactionRequest.getSourceAccount().getSortCode();
         String sourceAccountNumber = transactionRequest.getSourceAccount().getAccountNumber();
         Optional<Account> sourceAccount = accountRepository
@@ -56,6 +58,7 @@ public class TransactionService {
     }
 
     public Account updateAccountBalance(Account account, double amount, ACTION action) {
+        // This method is used to update the balance of account using action type(DEPOSIT OR WITHDRAW).
         if (action == ACTION.WITHDRAW) {
             account.setCurrentBalance((account.getCurrentBalance() - amount));
         } else if (action == ACTION.DEPOSIT) {
@@ -66,6 +69,7 @@ public class TransactionService {
 
     // TODO support overdrafts or credit account
     public boolean isAmountAvailable(double amount, double accountBalance) {
+        // This validation is used before doing any withdrawal from the account.
         return (accountBalance - amount) > 0;
     }
 }
